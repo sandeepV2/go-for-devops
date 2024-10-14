@@ -1,0 +1,8 @@
+kubectl create -f replica-set-service.yml
+
+kubectl get -f replica-set-service.yml
+
+kubectl expose rs go-demo-2 \
+    --name=go-demo-2-svc \
+    --target-port=28017 \
+    --type=NodePort

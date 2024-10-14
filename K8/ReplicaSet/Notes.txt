@@ -1,0 +1,14 @@
+We learnt from the pods that, 
+If a Pod is created without a controller and subsequently destroyed, Kubernetes does nothing to remedy the problem.
+
+ReplicaSet is our fist controller.
+Pods associated with a ReplicaSet are guaranteed to run. They provide fault tolerance and high availability.
+
+spec and has the same schema as a Pod specification. 
+At a minimum, the labels of the spec.template.metadata.labels section must match those specified in the spec.selector.matchLabels. 
+We can set additional labels that will serve informational purposes
+
+API server -> deployment controller -> scheduler -> kubelet -> Docker
+
+The bad news is that ReplicaSets are rarely used independently. We will almost never create a ReplicaSet directly just as we do not create Pods. 
+Instead, we tend to create ReplicaSets through Deployments. In other words, we use ReplicaSets to create and control Pods, and Deployments to create ReplicaSets (and a few other things). We’ll get to Deployments soon.

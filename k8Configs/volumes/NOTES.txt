@@ -1,0 +1,14 @@
+Hostpath not working on minikube.
+
+volumeMounts:
+        - name: data-volume
+          mountPath: /opt
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+  volumes:
+    - name: data-volume
+      hostPath:
+        path: /Users/sbelagavi/data/
+        type: Directory

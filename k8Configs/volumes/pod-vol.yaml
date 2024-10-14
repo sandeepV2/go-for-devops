@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    name: myapp
+spec:
+  containers:
+    - name: myapp
+      image: alpine
+      command: ["/bin/sh", "-c"]
+      args: ["shuf -i 0-100 -n 1 >> /opt/number.out; sleep 100"]
+      volumeMounts:
+        - name: data-volume
+          mountPath: /opt
+      resources:
+        limits:
+          memory: "20Mi"
+          cpu: "500m"
+  volumes:
+    - name: data-volume
+      persistentVolumeClaim:
+        claimName: mypvc

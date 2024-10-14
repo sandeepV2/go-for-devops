@@ -1,0 +1,56 @@
+//Create a cluster, k3s open source cluster.
+$ k3d cluster create mycluster
+
+$kubectl config use-context k3d-mycluster
+$kubectl cluster-info
+
+$kubectl get nodes
+NAME                     STATUS   ROLES                  AGE   VERSION
+k3d-mycluster-server-0   Ready    control-plane,master   97s   v1.21.5+k3s1
+
+$kubectl run db --image mongo
+
+$kubectl get pods
+
+$docker exec -it k3d-mycluster-server-0 ctr container ls | grep mongo 
+
+$kubectl delete pod db
+
+// Better way to create pod using yaml declarations.
+
+$kubectl create -f db.yml
+$kubectl get pods
+$kubectl get pods -o wide
+$kubectl get pods -o json
+$kubectl get pods -o yaml
+$kubectl describe pod db
+
+// Enter into the pod
+$kubectl exec -it db -- sh
+
+// Kill container in the pod
+$kubectl exec db --  pkill mongod
+
+// Multiple Containers in a pod, These could be better used in 
+// CI/CD/CDP.
+$kubectl create -f go-demo-2.yml
+$kubectl get -f go-demo-2.yml
+$kubectl get -f go-demo-2.yml -o json
+$kubectl get -f go-demo-2.yml -o jsonpath="{.spec.containers[*].name}"
+$kubectl exec -it -c db go-demo-2 -- ps aux
+$kubectl logs go-demo-2 -c db
+$kubectl delete -f go-demo-2.yml
+
+// Monitor health check, Liveliness and Readiness Probes.
+HealthCheck.yaml.
+timeoutSeconds: 2 # Defaults to 1
+      periodSeconds: 5 # Defaults to 10
+      failureThreshold: 1 # Defaults to 3
+// declare that the process should be repeated every five seconds (periodSeconds), 
+// and (failureThreshold) define how many attempts it must try before giving up.
+//  If a Pod fails, gets destroyed, or gets evicted from a node, it will not be rescheduled. 
+// At least, not without a controller 
+
+** Always deploy pods using controllers **
+
+

@@ -1,0 +1,6 @@
+We need a mechanism that will accept requests on predefined ports (e.g., 80 and 443) and forward them to Kubernetes Services.
+
+Kubernetes volumes solve the need to preserve the state across container crashes. 
+
+ConfigMaps allow us to “inject” configurations into containers. The source of the configurations can be files, directories, or literal values. The destination can be files or environment variables.
+

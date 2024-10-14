@@ -1,0 +1,27 @@
+// Command to expose the replica set a service.
+kubectl expose rs go-demo-2 \
+    --name=go-demo-2-svc \
+    --target-port=28017 \
+    --type=NodePort
+
+
+// Command to deploy
+kubectl create -f demo-2-db-rs.yml
+kubectl create -f demo-svc.yml
+
+kubectl create -f go-demo-2-svc.yml
+
+kubectl get -f go-demo-2-svc.yml
+
+kubectl port-forward service/go-demo-2 3000:28017 --address 0.0.0.0
+#Now click on the link beside Run button 
+# Exit the port-forward process by clicking Ctrl + C for Windows
+# Or Control + C for Mac before running the next command
+
+kubectl get ep go-demo-2 -o yaml
+
+kubectl delete -f go-demo-2-svc.yml
+
+kubectl delete -f go-demo-2-rs.yml
+
+

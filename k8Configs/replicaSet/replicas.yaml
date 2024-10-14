@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replica-cache
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: cache
+  template:
+    metadata:
+      name: redis
+      labels:
+        name: cache
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6380

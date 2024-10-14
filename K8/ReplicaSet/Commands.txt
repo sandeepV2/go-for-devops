@@ -1,0 +1,20 @@
+$kubectl get rs
+
+// ReplicaSet match labels must be same as pod labels.
+$kubectl get pods --show-labels
+
+kubectl create -f go-demo-2.yml
+
+kubectl get rs
+
+kubectl get -f go-demo-2.yml
+
+kubectl describe -f go-demo-2.yml
+
+kubectl get pods --show-labels
+
+// Applying defintion to deployment (this adds 2 more nodes to the cluster)
+kubectl apply -f go-demo-2-scaled.yml
+
+// Argument used to removing downstream objects.
+$ --cascade=false

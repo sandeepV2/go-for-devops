@@ -1,0 +1,19 @@
+1. With 2 containers in 1 pod (db and API) we cannot scale both the services
+   independently.
+
+2. Even if we launch all the containers saperately, The ip adress would change
+   on every replica set healing or creating. 
+
+There is need for static names for inter communication between the pods.
+
+We can use the kubectl expose command to expose a resource as a new Kubernetes Service.
+
+Other type of services.
+ClusterIP, NodePort
+LoadBalancer (The LoadBalancer type is only useful when combined with the cloud provider’s load balancer.)
+
+API service -> EndPoint controller -> Kube proxy (iptables)-> kube-dns 
+
+Communication from within the nodes (NodePort) using kube-proxy.
+Communication from outside the nodes (TargatPort) using kube-dns.
+

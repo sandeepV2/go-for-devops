@@ -1,0 +1,5 @@
+k8 cluster
+- master nodes (API service, scheduler)
+- worker nodes (kubelet, docker)
+
+Request -> API service -> scheduler (look for right node) -> kubelet (assign pod to the node) 

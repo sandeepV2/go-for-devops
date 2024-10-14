@@ -1,0 +1,12 @@
+K8 monitoring service.
+
+Heapster.
+Metric Server.
+
+scheduler relies on the data provided by Metric Server for allocation.
+kubelet > matric server.
+
+$kubectl top nodes
+
+Utilisation of each pod.
+$  kubectl -n kube-system top pod 
